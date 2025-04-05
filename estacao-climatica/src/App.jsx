@@ -1,6 +1,7 @@
 import React from 'react'
 import Hippo from './Hippo.jsx'
 import EstacaoClimatica from './EstacaoCLimatica.jsx'
+import Loading from './Loading.jsx'
 
 class App extends React.Component {
 
@@ -119,6 +120,16 @@ class App extends React.Component {
         </div>
         <div className="row justify-content-center">
           <div className="col-sm-12 col-lg-6 col-xxl-4">
+            {
+              (!this.state.latitude && !this.state.mensagemDeErro) ?
+              <Loading
+              mensagem = "Por favor, responda à solicitação de localização"/>
+              :
+              this.state.mensagemDeErro ?
+              <p className="border rounded p-2 fs-1 text-center">
+                É preciso dar permissão para acesso a localização
+              </p>
+              :
              <EstacaoClimatica 
              latitude = {this.state.latitude}
              longitude = {this.state.longitude}
@@ -127,6 +138,7 @@ class App extends React.Component {
              icone = {this.state.icone}
              mensagemDeErro = {this.state.mensagemDeErro}
              obterLocalizacao = {this.obterLocalizacao}/>
+            }
           </div>
         </div>
       </div>
