@@ -7,7 +7,7 @@ import 'primeicons/primeicons.css'
 import 'primereact/resources/themes/lara-dark-purple/theme.css'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  //<StrictMode>
     <App />
-  </StrictMode>,
+  //</StrictMode>,
 )
