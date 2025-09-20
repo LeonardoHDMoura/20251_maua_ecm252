@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
-
-class AppState extends State<App>{
-  var numeroImagens = 0;
+import 'package:http/http.dart' as http;
+class AppState extends State <App> {
+  void obterImagem(){
+    http.get(Uri.parse("https://api.pexels.com/v1/search"));
+  }
+  int numeroDeImagens = 0;
+  final chaveAPI = "";
   @override
-  Widget build(BuildContext? buildContext){
-    return MaterialApp( home: Scaffold(
-      appBar: AppBar(
-        title: const Text("Minhas Imagens")
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){setState(()=>numeroImagens++);},
-        child: Icon(
-          Icons.camera_alt
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Minhas Imagens")),
+        body: Text('Número de imagens: $numeroDeImagens.'),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            obterImagem();
+
+          },
+          child: Icon(Icons.camera_alt),
         ),
       ),
-      body: Text('$numeroImagens')
-    )
-  );
+    );
+  }
 }
-}
-
 class App extends StatefulWidget{
-  State<App> createState(){
+  State <App> createState(){
     return AppState();
   }
 }
